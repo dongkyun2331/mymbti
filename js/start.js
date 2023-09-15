@@ -20,27 +20,27 @@ function calResult() {
     { name: "pig", value: 0, key: 11 },
   ];
 
-  for(let i = 0; 1 < endPoint; 1++) {
+  for (let i = 0; i < endPoint; i++) {
     var target = qnaList[i].a[select[i]];
-    for(let j = 0; j < target.type.length; j++) {
-      for(let k = 0; k < pointArray .length; k++){
-        if(target.type[j] === pointArray[k].name) {
+    for (let j = 0; j < target.type.length; j++) {
+      for (let k = 0; k < pointArray.length; k++) {
+        if (target.type[j] === pointArray[k].name) {
           pointArray[k].value += 1;
         }
       }
     }
   }
 
-  var resultArray = pointArray.sort(function(a,b){
-    if(a.value > b.value) {
+  var resultArray = pointArray.sort(function (a, b) {
+    if (a.value > b.value) {
       return -1;
     }
-    if(a.value < b.value) {
+    if (a.value < b.value) {
       return 1;
     }
     return 0;
-  })
-
+  });
+  console.log(resultArray);
   let resultword = resultArray[0].key;
   return resultword;
 }
@@ -57,6 +57,7 @@ function goResult() {
     }, 450);
   });
 
+  calResult();
 }
 
 function addAnswer(answerText, qIdx, idx) {
@@ -67,8 +68,10 @@ function addAnswer(answerText, qIdx, idx) {
   answer.classList.add("py-3");
   answer.classList.add("mx-auto");
   answer.classList.add("fadeIn");
+
   a.appendChild(answer);
   answer.innerHTML = answerText;
+
   answer.addEventListener(
     "click",
     function () {
@@ -91,10 +94,11 @@ function addAnswer(answerText, qIdx, idx) {
 }
 
 function goNext(qIdx) {
-  if (qIdx + 1 === endPoint) {
+  if (qIdx === endPoint) {
     goResult();
     return;
   }
+
   var q = document.querySelector(".qBox");
   q.innerHTML = qnaList[qIdx].q;
   for (let i in qnaList[qIdx].a) {
