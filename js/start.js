@@ -38,8 +38,7 @@ function goResult() {
       result.style.display = "block";
     }, 450);
   });
-
-  calResult();
+  setResult();
 }
 
 function addAnswer(answerText, qIdx, idx) {
@@ -65,7 +64,7 @@ function addAnswer(answerText, qIdx, idx) {
       }
       setTimeout(() => {
         var target = qnaList[qIdx].a[idx].type;
-        for (let j = 0; j < target.type.length; j++) {
+        for (let i = 0; i < target.length; i++) {
           select[target[i]] += 1;
         }
 
